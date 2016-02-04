@@ -11,8 +11,7 @@
 |
 */
 
-Route::get('/', 'MainController@index');
-Route::get('/transporting/{id}', 'MainController@view')->name('transporting.view');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +25,14 @@ Route::get('/transporting/{id}', 'MainController@view')->name('transporting.view
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+
+    Route::get('/', 'MainController@index');
+    Route::get('/transporting/{id}', 'MainController@view')->name('transporting.view');
+
+
+    Route::get('/dashboard', ['as' => 'dashboard.main', 'uses' => 'Dashboard\MainController@index']);
+    Route::get('/dashboard/transporting', ['as' => 'dashboard.transporting.index', 'uses' => 'Dashboard\TransportingController@index']);
+    Route::get('/dashboard/transporting/{id}', ['as' => 'dashboard.transporting.view', 'uses' => 'Dashboard\TransportingController@view']);
+
+    Route::get('/dashboard/good/{id}', ['as' => 'dashboard.good.view', 'uses' => 'Dashboard\GoodController@view']);
 });
