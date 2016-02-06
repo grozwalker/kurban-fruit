@@ -31,8 +31,21 @@ Route::group(['middleware' => ['web']], function () {
 
 
     Route::get('/dashboard', ['as' => 'dashboard.main', 'uses' => 'Dashboard\MainController@index']);
-    Route::get('/dashboard/transporting', ['as' => 'dashboard.transporting.index', 'uses' => 'Dashboard\TransportingController@index']);
-    Route::get('/dashboard/transporting/{id}', ['as' => 'dashboard.transporting.view', 'uses' => 'Dashboard\TransportingController@view']);
 
-    Route::get('/dashboard/good/{id}', ['as' => 'dashboard.good.view', 'uses' => 'Dashboard\GoodController@view']);
+    // index -- список всех
+    Route::get('/dashboard/transporting', ['as' => 'dashboard.transporting.index', 'uses' => 'Dashboard\TransportingController@index']);
+
+    Route::get('/dashboard/transporting/create', ['as' => 'dashboard.transporting.create', 'uses' => 'Dashboard\TransportingController@create']);
+    Route::post('/dashboard/transporting', ['as' => 'dashboard.transporting.store', 'uses' => 'Dashboard\TransportingController@store']);
+
+    Route::get('/dashboard/transporting/{id}', ['as' => 'dashboard.transporting.view', 'uses' => 'Dashboard\TransportingController@view']);
+    Route::post('/dashboard/transporting/{id}', ['as' => 'dashboard.transporting.update', 'uses' => 'Dashboard\TransportingController@update']);
+    Route::get('/dashboard/transporting/{id}/delete', ['as' => 'dashboard.transporting.delete', 'uses' => 'Dashboard\TransportingController@destroy']);
+
+
+
+
+    Route::get('/dashboard/transporting/{transportingId}/good', ['as' => 'dashboard.good.index', 'uses' => 'Dashboard\GoodController@index']);
+    Route::get('/dashboard/transporting/{transportingId}/good/{id}', ['as' => 'dashboard.good.view', 'uses' => 'Dashboard\GoodController@view']);
+
 });

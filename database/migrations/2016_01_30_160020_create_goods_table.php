@@ -19,7 +19,7 @@ class CreateGoodsTable extends Migration
             $table->integer('transporting_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('transporting_id')->references('id')->on('transportings');
+            $table->foreign('transporting_id')->references('id')->on('transportings')->onDelete('cascade');
         });
     }
 
