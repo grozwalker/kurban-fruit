@@ -46,6 +46,12 @@ Route::group(['middleware' => ['web']], function () {
 
 
     Route::get('/dashboard/transporting/{transportingId}/good', ['as' => 'dashboard.good.index', 'uses' => 'Dashboard\GoodController@index']);
+    Route::get('/dashboard/transporting/{transportingId}/good/create', ['as' => 'dashboard.good.create', 'uses' => 'Dashboard\GoodController@create']);
+    Route::post('/dashboard/transporting/{transportingId}/good/', ['as' => 'dashboard.good.store', 'uses' => 'Dashboard\GoodController@store']);
+
     Route::get('/dashboard/transporting/{transportingId}/good/{id}', ['as' => 'dashboard.good.view', 'uses' => 'Dashboard\GoodController@view']);
+    Route::post('/dashboard/transporting/{transportingId}/good/{id}', ['as' => 'dashboard.good.update', 'uses' => 'Dashboard\GoodController@update']);
+    Route::get('/dashboard/transporting/{transportingId}/good/{id}/delete', ['as' => 'dashboard.good.delete', 'uses' => 'Dashboard\GoodController@destroy']);
+
 
 });

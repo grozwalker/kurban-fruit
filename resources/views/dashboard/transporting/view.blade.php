@@ -1,6 +1,13 @@
 @extends('dashboard.layout')
 
+@section('breadcrumbs', $transporting->id ? Breadcrumbs::render('transporting_item', $transporting) : Breadcrumbs::render('transporting_create', $transporting))
+
+
 @section('content')
+    @if ($transporting->id)
+        <a class="btn btn-primary" href="{{ route('dashboard.good.index', $transporting->id) }}"><i class="glyphicon glyphicon-folder-open"></i>         Открыть все товары</a>
+    @endif
+
     <h2 class="page-header">{{ $transporting->id ? $transporting->name : 'Создание транспортировки' }}</h2>
 
     <div class="row">
@@ -9,7 +16,7 @@
                 'route' => $transporting->id ? ['dashboard.transporting.update', $transporting->id] : ['dashboard.transporting.store'],
                 'class' => 'form-horizontal'
             ]) !!}
-            <div class="form-group {{ $errors->has('destination') ? 'has-error' : '' }}">
+            <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                 {!! Form::label('name', 'Наименование', ['class' => 'col-sm-2 control-label'])  !!}
                 <div class="col-sm-10">
                     {!! Form::text('name', null, ['class' => 'form-control'])  !!}

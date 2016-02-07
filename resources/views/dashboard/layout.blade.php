@@ -46,6 +46,11 @@
 </nav>
 
 <div class="container">
+    @yield('breadcrumbs')
+</div>
+
+
+<div class="container">
     @yield('content')
 </div><!-- /.container -->
 

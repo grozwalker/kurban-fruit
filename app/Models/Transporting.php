@@ -24,4 +24,9 @@ class Transporting extends Model
     {
         return $this->hasMany(Good::class);
     }
+
+    public function single_good()
+    {
+        return $this->hasMany(Good::class);
+    }
 }

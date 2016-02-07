@@ -19,6 +19,8 @@ class Good extends Model
 {
     protected $table = 'goods';
 
+    protected $fillable = ['name', 'weight'];
+
     public function transporting()
     {
         return $this->belongsTo(Transporting::class);

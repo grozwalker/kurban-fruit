@@ -1,5 +1,9 @@
 @extends('dashboard.layout')
 
+@section('breadcrumbs')
+    {!! Breadcrumbs::render('transportings') !!}
+@endsection
+
 @section('content')
 
 <h3 class="page-header">Транспортировки</h3>
