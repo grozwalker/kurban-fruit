@@ -58,6 +58,15 @@ class GoodController extends Controller
         $good =  Good::find($goodID);
         $good->update($request->all());
 
+        // read image from temporary file
+        /*$img = Image::make($_FILES['image']['tmp_name']);
+
+// resize image
+        $img->fit(300, 200);
+
+// save image
+        $img->save('foo/bar.jpg');*/
+
         $transporting = Transporting::find($transportingId);
         $goods = $transporting->goods;
 

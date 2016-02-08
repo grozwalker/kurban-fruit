@@ -22,8 +22,15 @@
         <div class="form-group {{ $errors->has('weight') ? 'has-error' : '' }}">
             {!! Form::label('weight', 'Вес', ['class' => 'col-sm-2 control-label'])  !!}
             <div class="col-sm-10">
-                {!! Form::textarea('weight', null, ['class' => 'form-control'])  !!}
+                {!! Form::text('weight', null, ['class' => 'form-control'])  !!}
                 {!! $errors->first('weight', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+        <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
+            {!! Form::label('image', 'Изображение', ['class' => 'col-sm-2 control-label'])  !!}
+            <div class="col-sm-10">
+                {!! Form::file('image')  !!}
+                {!! $errors->first('image', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
         <div class="form-group">
