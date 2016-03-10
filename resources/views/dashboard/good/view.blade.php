@@ -10,7 +10,9 @@
     <div class="col-md-8">
         {!! Form::model($good, [
             'route' => $good->id ? ['dashboard.good.update', $transporting->id, $good->id] : ['dashboard.good.store', $transporting->id],
-            'class' => 'form-horizontal'
+            'class' => 'form-horizontal',
+            'files' => true,
+            'enctype' => 'multipart/form-data'
         ]) !!}
         <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
             {!! Form::label('name', 'Наименование', ['class' => 'col-sm-2 control-label'])  !!}

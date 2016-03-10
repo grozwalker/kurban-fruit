@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Good;
 use App\Models\Transporting;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
+use Input;
 
 class GoodController extends Controller
 {
@@ -58,17 +61,25 @@ class GoodController extends Controller
         $good =  Good::find($goodID);
         $good->update($request->all());
 
-        // read image from temporary file
-        /*$img = Image::make($_FILES['image']['tmp_name']);
+// read image from temporary file
+        //$img = Image::make($_FILES['image']['tmp_name']);
 
 // resize image
-        $img->fit(300, 200);
+       //$img->fit(300, 200);
 
 // save image
-        $img->save('foo/bar.jpg');*/
+        //File::exists(storage_path('foo')) or File::makeDirectory(storage_path('foo'));
+        //$img->save('/foo/bar.jpg');
 
-        $transporting = Transporting::find($transportingId);
-        $goods = $transporting->goods;
+
+        //$image = Input::file('image');
+        $image = $request->file('image');
+        $filename  = time() . '.' . $image->getClientOriginalExtension();
+        $path = public_path('img/products/' . $filename);
+        Image::make($image->getRealPath())->resize(468, 249)->save($path);
+        File::exists(storage_path('img/products/')) or File::makeDirectory(storage_path('img/products/'));
+        $product->image = 'img/products/'.$filename;
+        $product->save();
 
         return view('dashboard.good.index', ['transporting' => $transporting, 'goods' => $goods]);
     }
